@@ -1,0 +1,76 @@
+<div
+  class="container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-around none">
+
+  <h3>Customer Management > <b>Create Customer</b></h3>
+  <hr />
+  <form
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="customer">
+    <h2><b>Customer Details</b></h2>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="firstname"/>
+        <mat-error >
+          <p style="color:red">Enter valid first name</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput  formControlName="lastname" />
+        <mat-error >
+          <p style="color:red">Enter valid last name</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Mobile No</mat-label>
+        <input type="text" matInput formControlName="mobile" />
+        <mat-error>
+          <p style="color:red">Enter valid mobile number</p>
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput formControlName="email" />
+        <mat-error >
+          <p style="color:red">Enter valid email</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <br><br>
+    <button
+      type="button"
+      mat-raised-button
+      style="float: right;"
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="save(form.value)"
+    >
+      submit
+    </button>
+  </form>
+</div>

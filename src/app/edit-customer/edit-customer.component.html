@@ -1,0 +1,263 @@
+<div
+  class="container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-around none">
+  <h3>Customer Management > <b>Edit Customer : {{ res.id}}</b></h3>
+
+  <hr />
+  <form *ngIf="basic"
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="customer">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between none">
+      <h2><b>Customer Details</b></h2>
+      <mat-slide-toggle [(ngModel)]="isActive" color="primary" formControlName="status">
+        <span  style="font-weight: bold;">Status : </span>
+        <span *ngIf="isActive" style="color: green;font-weight: 600;">Active</span>
+        <span *ngIf="!isActive" style="color: red;font-weight: 600;">Disabled</span>
+      </mat-slide-toggle>
+     </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput value="{{res.firstname}}" formControlName="firstname">
+        <mat-error >
+          <p style="color:red">Enter valid first name</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput value="{{res.lastname}}" formControlName="lastname" >
+        <mat-error *ngIf="!customer.get('lastname').valid">
+          <p style="color:red">Enter valid last name</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Mobile No</mat-label>
+        <input type="text" matInput value="{{res.mobile}}" formControlName="mobileno" />
+        <mat-error *ngIf="!customer.get('mobileno').valid">
+          <p style="color:red">Enter valid mobile number</p>
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput value="{{res.email}}" formControlName="email" />
+        <mat-error *ngIf="!customer.get('email').valid">
+          <p style="color:red">Enter valid email</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <button
+      type="button"
+      mat-raised-button
+      style="float: right;"
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="save(form.value)"
+    >
+      Save
+    </button>
+  </form>
+
+  <form *ngIf="addr"
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="address">
+    <h2><b>Address : {{addno}}</b></h2>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Door.No</mat-label>
+        <input type="text" matInput formControlName="doorno" />
+        <mat-error>
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Street/Buiding Name/Colony
+        </mat-label>
+        <input type="text" matInput formControlName="street" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>village/Town</mat-label>
+        <input type="text" matInput formControlName="town" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>city</mat-label>
+        <input type="text" matInput formControlName="city" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Postal Code</mat-label>
+        <input type="text" matInput formControlName="postal" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>State</mat-label>
+        <input type="text" matInput formControlName="state" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <button
+      type="button"
+      mat-raised-button
+      style="float: right;"
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="saveAddress(form.value)"
+    >
+      Save
+    </button>
+  </form>
+
+  <form *ngIf="addAddr"
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="address">
+    <h2><b>Address : </b></h2>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Door.No</mat-label>
+        <input type="text" matInput formControlName="doorno" />
+        <mat-error>
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Street/Buiding Name/Colony
+        </mat-label>
+        <input type="text" matInput formControlName="street" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>village/Town</mat-label>
+        <input type="text" matInput formControlName="town" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>city</mat-label>
+        <input type="text" matInput formControlName="city" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Postal Code</mat-label>
+        <input type="text" matInput formControlName="postal" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>State</mat-label>
+        <input type="text" matInput formControlName="state" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button
+      type="button"
+      mat-raised-button
+      style="float: right;"
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="addAddress(form.value)"
+    >
+      Save
+    </button>
+  </form>
+</div>
